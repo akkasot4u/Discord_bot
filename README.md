@@ -6,7 +6,7 @@ Run pip install requirements.txt
 I have installed postgresql 11 database to store the history data of searches
 
 
-#you can use this bot via invitation link
+you can use this bot via invitation link
 
 link: https://discord.gg/XMfBdxM
 
