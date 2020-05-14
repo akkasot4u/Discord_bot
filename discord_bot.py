@@ -1,4 +1,4 @@
-secret_token= "NzEwMDMyMzQ5MDgwODQ2NDE3.Xr1Dog.F1QoYJAxe1cw0rK38nWQ87RRvpM"
+secret_token= "NzEwMDMyMzQ5MDgwODQ2NDE3.Xr1aCw._MmHOJUIFxL3MWqYFf2WHpmXBBs"
 
 import discord
 from googlesearch import search
@@ -10,12 +10,31 @@ host = "127.0.0.1"
 port = "5432"
 database = "discord"
 
-connection = psycopg2.connect(user = user,
+connection = None
+try:
+    connection = psycopg2.connect(user = user,
                                 password = password,
                                 host = host,
                                 port = port,
                                 database = database)
-cursor = connection.cursor()
+    cursor = connection.cursor()
+except:
+    print("database named discord does not exist, wait its Creating")
+    connection = psycopg2.connect(user = user,
+                                password = password,
+                                host = host,
+                                port = port,
+                                database = "postgres")
+    connection.autocommit = True
+    cursor = connection.cursor()
+    qry = '''CREATE database discord'''
+    cursor.execute(qry)
+    print("database with name discord created")
+
+
+#Creating table as per requirement
+cursor.execute('''CREATE TABLE IF NOT EXISTS user_history
+    (user_name CHAR(200) NOT NULL, history CHAR(200))''')
 
 # saving the search history of author inside database
 def insert_data(user_name, search_string):
