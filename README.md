@@ -19,3 +19,8 @@ make sure you have already installed postgres ddatabse and a table name "user_hi
 1. user_name (data type - character variable)
 
 2. history - (data type - character_variable)
+
+# Note: it might possible that token will not work, as for security reasons, discord will change the token
+
+You can ask me in case you need updated token
+
